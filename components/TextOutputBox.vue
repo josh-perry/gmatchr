@@ -1,6 +1,6 @@
 <template>
   <div>
-    <textarea v-model="patternState.pattern" />
+    <textarea v-model="matchText" />
   </div>
 </template>
 
@@ -10,6 +10,28 @@ export default {
     patternState: {
       type: Object,
       default: () => {}
+    }
+  },
+
+  data: function () {
+    return {
+      matchText: 'Hello world!'
+    }
+  },
+
+  watch: {
+    'patternState.pattern': function (val) {
+      this.updateMatches()
+    },
+
+    'matchText': function (val) {
+      this.updateMatches()
+    }
+  },
+
+  methods: {
+    updateMatches: function () {
+      console.log('updating matches')
     }
   }
 }
